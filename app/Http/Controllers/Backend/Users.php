@@ -11,16 +11,26 @@ use App\Http\Requests\BackEnd\Users\Update;
 
 class Users extends BackendController
 {
-    public function index()
+    public function __construct(User $model)
     {
-        $users = User::all();
-        return view('back-end.users.index', compact('users'));
+        parent::__construct($model);
     }
 
-    public function create()
-    {
-        return view('back-end.users.create');
-    }
+    /*
+    
+        I Will Use This Function In Part Searching And Filtering
+    
+    */
+
+    // protected function filter($rows)
+    // {
+    //     if (request()->has('name') && request('name') != '') {
+            
+    //         $rows = $rows->where('name', request('name'));
+    //     }
+
+    //     return $rows;
+    // }
 
 
     public function store(Store $request)
@@ -29,27 +39,13 @@ class Users extends BackendController
         
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
-        User::create($data);
+        $this->model->create($data);
         return redirect()->route('users.index');    
-
-    }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        $user = User::findOrfail($id);
-        return view('back-end.users.edit', compact('user'));
     }
 
     public function update(Update $request, $id)
     {
-        $user = User::findOrfail($id);
+        $row = $this->model->findOrfail($id);
         $data = $request->all();
 
         if (isset($data['password']) && $data['password'] != '') {
@@ -58,14 +54,8 @@ class Users extends BackendController
             unset($data['password']);
         }
         
-        $user->update($data);
+        $row->update($data);
         return redirect()->back();
     }
 
-
-    public function destroy($id)
-    {
-        $user = User::findOrfail($id)->delete();
-        return redirect()->route('users.index');
-    }
 }

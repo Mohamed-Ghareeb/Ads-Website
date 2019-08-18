@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div class="form-group bmd-form-group">
             <label class="bmd-label-floating">Username</label>
-            <input type="text" name="{{$input}}" value="{{ isset($input) ? $user->{$input} : '' }}" class="form-control @error($input) is-invalid @enderror">
+            <input type="text" name="{{$input}}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control @error($input) is-invalid @enderror">
             @error($input)
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -15,7 +15,7 @@
     <div class="col-md-12">
         <div class="form-group bmd-form-group">
             <label class="bmd-label-floating">Email</label>
-            <input type="email" name="{{$input}}" value="{{ isset($input) ? $user->{$input} : '' }}" class="form-control @error($input) is-invalid @enderror">
+            <input type="email" name="{{$input}}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control @error($input) is-invalid @enderror">
             @error($input)
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -41,8 +41,8 @@
             <label class="bmd-label-floating">Group</label>
             <select name="{{$input}}" class="form-control @error($input) is-invalid @enderror">
                 <option value="">.....</option>
-                <option value="admin" {{ isset($user) && $user->{$input} == 'admin' ? 'selected' : '' }}>Admin</option>
-                <option value="user"  {{ isset($user) && $user->{$input} == 'user' ? 'selected' : '' }}>User</option>
+                <option value="admin" {{ isset($row) && $row->{$input} == 'admin' ? 'selected' : '' }}>Admin</option>
+                <option value="user"  {{ isset($row) && $row->{$input} == 'user' ? 'selected' : '' }}>User</option>
             </select>
             @error($input)
             <span class="invalid-feedback" role="alert">

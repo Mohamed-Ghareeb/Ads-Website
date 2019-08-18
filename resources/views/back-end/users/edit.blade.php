@@ -11,7 +11,7 @@
                     <p class="card-category">From Here You Can Edit a User</p>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('users.update', ['id' => $user->id]) }}" method="POST">
+                    <form action="{{ route('users.update', ['id' => $row->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         @include('back-end.users.form')

@@ -40,12 +40,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($rows as $row)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->group }}</td>
+                                        <td>{{ $row->id }}</td>
+                                        <td><a href="{{ route('users.show', ['id' => $row->id]) }}">{{ $row->name }}</a></td>
+                                        <td>{{ $row->email }}</td>
+                                        <td>{{ $row->group }}</td>
                                         <td class="td-actions">
                                             @include('back-end.shared.buttons.edit')
                                             @include('back-end.shared.buttons.delete')

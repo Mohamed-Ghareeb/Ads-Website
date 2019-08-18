@@ -8,8 +8,8 @@ Route::get('/', function () {
 
 Route::prefix('admin')->middleware('admin')->namespace('Backend')->group(function () {
     
-    Route::get('/home', 'Home@index')->name('back.home');
-    Route::resource('users', 'Users');
+    Route::get('/home', 'Home@index')->name('back.home');                     // Routes Home For Dashboard
+    Route::resource('users', 'Users');                       // Routes Users
 
 });
 
