@@ -40,7 +40,7 @@ class Users extends BackendController
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
         $this->model->create($data);
-        return redirect()->route('users.index');    
+        return redirect()->route($this->getTheNameFromClass() . '.index');    
     }
 
     public function update(Update $request, $id)
@@ -56,6 +56,27 @@ class Users extends BackendController
         
         $row->update($data);
         return redirect()->back();
+    }
+
+    
+    public function destroy($id)
+    {
+        if (auth()->user()->id != $id) {
+            $row = $this->model->findOrfail($id)->delete();
+        }
+        return redirect()->route($this->getTheNameFromClass() . '.index');
+    }
+
+    public function edit($id)
+    {
+        if (auth()->user()->id == $id) {
+            return redirect()->route($this->getTheNameFromClass() . '.show', ['id' => $id]);
+        } else {
+            $row = $this->model->findOrfail($id);
+        }
+        // dd($this->model->findOrfail($id), 'uuuuuuuuuu');
+
+        return view('back-end.' . $this->getTheNameFromClass() . '.edit', ($row != null) ? compact('row') : '');
     }
 
 }

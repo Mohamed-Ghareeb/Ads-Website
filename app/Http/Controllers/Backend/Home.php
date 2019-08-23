@@ -8,9 +8,9 @@ use App\Models\User;
 
 class Home extends BackendController
 {
-    public function __construct(User $model)
+    public function __construct()
     {
-        Parent::__construct($model);
+        Parent::__construct();
     }
 
 

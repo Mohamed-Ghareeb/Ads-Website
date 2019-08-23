@@ -11,6 +11,8 @@
         </nav>
         <div class="copyright float-right">
             &copy;
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
             <script>
                 document.write(new Date().getFullYear())
             </script>, made with <i class="material-icons">favorite</i> by
