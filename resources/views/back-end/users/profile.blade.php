@@ -13,12 +13,22 @@
                     </div>
                     <div class="card-body">
                         <h6 class="card-category text-gray">{{ $row->group }}</h6>
-                        <h4 class="card-title">{{ $row->name }}</h4>
-                        <p class="card-description">
-                            Don't be scared of the truth because we need to restart the human foundation in truth And I
-                            love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                        </p>
-                        <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                        <h3 class="card-title">{{ $row->name }}</h3>
+                        <h4 class="card-title">{{ $row->email }}</h4>
+                        @if (auth()->user()->id == $row->id)
+                            <div>
+                                <button onclick="$(this).next('div').slideToggle(500)" class="btn btn-primary btn-round">Edit Profile</button>
+                                <div class="card card-nav-tabs text-left" id="profileCard" style="display:none;margin-top: 40px">
+                                        <br />
+                                    <div class="card-header card-header-primary">
+                                        <h4 style="margin-top:10px;margin-bottom:5px">Update Profile</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        @include('back-end.shared.profile.form')
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

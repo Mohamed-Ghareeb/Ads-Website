@@ -9,8 +9,8 @@
                 <div class="card-header card-header-primary">
                     <div class="row">
                         <div class="col-md-4">
-                            <h4 class="card-title" style="color:#FFF">Users</h4>
-                            <p class="card-category">Here is You Can Control The Users</p>
+                            <h4 class="card-title" style="color:#FFF">{{ $moduleName }}</h4>
+                            <p class="card-category">{{ $pageDesc }}</p>
                         </div>
                         {{-- <div class="col-md-2"></div>
                         <div class="col-md-4 text-right">
@@ -20,7 +20,7 @@
                                 <a href="{{ route('back.all_trashed') }}" class="btn btn-primary btn-round bg-white" style="color:blueviolet"><i style="margin-right:10px" class="fa fa-trash"></i> The Trashed Records</a>
                             @endif
   
-                            <a href="{{ route('users.create') }}" class="btn btn-primary btn-round bg-white" style="color:blueviolet"><i style="margin-right:10px" class="fa fa-plus"></i>  Add User</a>
+                            <a href="{{ route('back.'.$routeName . '.create') }}" class="btn btn-primary btn-round bg-white" style="color:blueviolet"><i style="margin-right:10px" class="fa fa-plus"></i>  Add User</a>
                         </div>
                     </div>
                 </div>
@@ -50,12 +50,12 @@
                                 @foreach ($rows as $row)
                                     <tr>
                                         <td>{{ $row->id }}</td>
-                                        <td><a href="{{ route('users.show', ['id' => $row->id]) }}">{{ $row->name }}</a></td>
+                                        <td><a href="{{ route('back.' . $routeName . '.show', ['id' => $row->id]) }}">{{ $row->name }}</a></td>
                                         <td>{{ $row->email }}</td>
                                         <td>{{ $row->group }}</td>
                                         <td class="td-actions">
-                                            @include('back-end.shared.buttons.edit')
-                                            @include('back-end.shared.buttons.destroy')
+                                            @include('back-end.shared.buttons.edit', ['url' => route('back.' . $routeName . '.edit', $row)])
+                                            @include('back-end.shared.buttons.destroy', ['url' => route('back.' . $routeName . '.destroy', $row)])
                                         </td>
                                     </tr>        
                                 @endforeach
@@ -65,7 +65,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

@@ -47,7 +47,7 @@
                     </a>
                 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('users.show', ['id' => auth()->user()->id]) }}">
+                        <a class="dropdown-item" href="{{ route('back.users.show', ['id' => auth()->user()->id]) }}">
                             Profile
                         </a>
                         <a class="dropdown-item" href="{{ route('logout') }}"

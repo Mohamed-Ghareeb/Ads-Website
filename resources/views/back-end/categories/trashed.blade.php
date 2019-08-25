@@ -9,11 +9,11 @@
                 <div class="card-header card-header-primary">
                     <div class="row">
                         <div class="col-md-4">
-                            <h4 class="card-title" style="color:#FFF">The Trashed Users</h4>
-                            <p class="card-category">Here is You Can Restore || Delete The Users</p>
+                            <h4 class="card-title" style="color:#FFF">The Trashed Categories</h4>
+                            <p class="card-category">Here is You Can Restore || Delete The Categories</p>
                         </div>
                         <div class="col-md-8 text-right">
-                            <a href="{{ route('back.'.$routeName . '.index') }}" class="btn btn-primary btn-round bg-white" style="color:blueviolet"><i style="margin-right:10px" class="fa fa-user"></i>  The Users</a>
+                            <a href="{{ route('back.'.$routeName . '.index') }}" class="btn btn-primary btn-round bg-white" style="color:blueviolet"><i style="margin-right:10px" class="fa fa-user"></i>  The Categories</a>
                         </div>
                     </div>
                 </div>
@@ -26,13 +26,10 @@
                                         ID
                                     </th>
                                     <th>
-                                        Name
+                                        title
                                     </th>
                                     <th>
-                                        Email
-                                    </th>
-                                    <th>
-                                        Group
+                                        Icon
                                     </th>
                                     <th>
                                         Control
@@ -41,16 +38,15 @@
                             </thead>
                             <tbody>
                                 @foreach ($rows_trashed as $row)
-                                    <tr>
-                                        <td>{{ $row->id }}</td>
-                                        <td><a href="{{ route($routeName . '.show', ['id' => $row->id]) }}">{{ $row->name }}</a></td>
-                                        <td>{{ $row->email }}</td>
-                                        <td>{{ $row->group }}</td>
-                                        <td class="td-actions">
-                                            @include('back-end.shared.buttons.restore', ['url' => route('back.users.restore', $row)])
-                                            @include('back-end.shared.buttons.delete', ['url' => route('back.users.delete', $row)])
-                                        </td>
-                                    </tr>        
+                                <tr>
+                                    <td>{{ $row->id }}</td>
+                                    <td>{{ $row->title }}</td>
+                                    <td><img src="{{ $row->iconPath() }}" alt="" width="100" height="100"></td>
+                                    <td class="td-actions">
+                                        @include('back-end.shared.buttons.restore', ['url' => route('back.categories.restore', $row)])
+                                        @include('back-end.shared.buttons.delete', ['url' => route('back.categories.delete', $row)])
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>

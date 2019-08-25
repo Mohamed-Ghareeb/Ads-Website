@@ -21,9 +21,15 @@
                 </a>
             </li>
             <li class="nav-item {{ is_active('users') }}">
-                <a class="nav-link" href="{{ route('users.index') }}">
+                <a class="nav-link" href="{{ route('back.users.index') }}">
                     <i class="material-icons">person</i>
                     <p>Users</p>
+                </a>
+            </li>
+            <li class="nav-item {{ is_active('categories') }}">
+                <a class="nav-link" href="{{ route('back.categories.index') }}">
+                    <i class="material-icons">bubble_chart</i>
+                    <p>Categories</p>
                 </a>
             </li>
                     <!-- your sidebar here -->
