@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="card card-profile">
                     <div class="card-avatar">
-                        <img class="img" src="/uploads/users/{{ $row->image }}">
+                        <img class="img" src="{{ asset($row->imagePath()) }}">
                     </div>
                     <div class="card-body">
                         <h6 class="card-category text-gray">{{ $row->group }}</h6>

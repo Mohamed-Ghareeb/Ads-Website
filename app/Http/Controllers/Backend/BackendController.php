@@ -112,7 +112,15 @@ class BackendController extends Controller
     protected function pluralModelName()
     {
         return str_plural(class_basename($this->model));
-    }    
+    }
+
+    protected function upload($request, String $file, $path)
+    {
+        $file = $request->file($file);
+        $fileName = time() . str_random(10) . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('/uploads/' . $path), $fileName);
+        return $fileName;
+    }
     
 
 

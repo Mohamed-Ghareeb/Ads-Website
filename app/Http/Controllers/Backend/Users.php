@@ -16,7 +16,7 @@ class Users extends BackendController
     {
         parent::__construct($model);
     }
-    
+
     /*
     
         I Will Use This Function In Part Searching And Filtering
@@ -26,7 +26,7 @@ class Users extends BackendController
     // protected function filter($rows)
     // {
     //     if (request()->has('name') && request('name') != '') {
-            
+
     //         $rows = $rows->where('name', request('name'));
     //     }
 
@@ -37,11 +37,11 @@ class Users extends BackendController
     public function store(Store $request)
     {
         // dd($request->all());
-        
+
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
         $this->model->create($data);
-        return redirect()->route('back.' . $this->getTheNameFromClass() . '.index');    
+        return redirect()->route('back.' . $this->getTheNameFromClass() . '.index');
     }
 
     public function update(Update $request, $id)
@@ -54,12 +54,12 @@ class Users extends BackendController
         } else {
             unset($data['password']);
         }
-        
+
         $row->update($data);
         return redirect()->back();
     }
 
-    
+
     public function destroy($id)
     {
         if (auth()->user()->id != $id) {
@@ -100,11 +100,19 @@ class Users extends BackendController
             $array['password'] = Hash::make($request->password);
         }
 
+        if ($row->image == 'default.png') {
+            $array['image'] = BackendController::upload($request, 'image', 'users');
+        }
+      
+        if ($row->image != 'default.png') {
+            $array['image'] = BackendController::upload($request, 'image', 'users');
+            \File::delete(public_path('/uploads/users/' . $row->image));
+        }
+
         if (!empty($array)) {
             $row->update($array);
         }
 
         return redirect()->back();
     }
-
 }

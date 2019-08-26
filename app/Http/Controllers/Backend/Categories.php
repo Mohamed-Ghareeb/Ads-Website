@@ -36,7 +36,7 @@ class Categories extends BackendController
     {
         $data = $request->all();
         if ($request->file('icon') && $request->file('icon') != '') {
-            $fileName     = $this->uploadIcon($request);
+            $fileName     = $this->upload($request, 'icon', 'categories');
             $data['icon'] = '/uploads/categories/' . $fileName; 
         }
 
@@ -52,12 +52,12 @@ class Categories extends BackendController
         $data = $request->all();
 
         if ($request->hasFile('icon') && $request->hasFile('icon') != '') {
-            $fileName     = $this->uploadIcon($request);
+            $fileName     = $this->upload($request, 'icon', 'categories');
             \File::delete(public_path($row->icon));
             $data['icon'] = '/uploads/categories/' . $fileName;
         }
         $row->update($data);
-        return redirect()->back();
+        return redirect()->route('back.' . $this->getTheNameFromClass() . '.index');
     }
 
     public function delete($id) // Soft Delete [ delete ] => Mean Delete form Database And The Application
@@ -70,13 +70,5 @@ class Categories extends BackendController
         }
         $row->forceDelete();
         return redirect()->back();
-    }
-
-    public function uploadIcon($request)
-    {
-        $file = $request->file('icon');
-        $fileName = time() . str_random(10) . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('/uploads/categories'), $fileName); 
-        return $fileName;
     }
 }

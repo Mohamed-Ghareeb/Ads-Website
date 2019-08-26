@@ -23,7 +23,6 @@ class User extends Authenticatable
 
     protected $dates = ['deleted_at'];
     
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -45,6 +44,11 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->group == 'admin';
+    }
+
+    public function imagePath()
+    {
+        return asset('/uploads/users/' . $this->image);
     }
 }
 
