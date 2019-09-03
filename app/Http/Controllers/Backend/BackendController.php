@@ -24,8 +24,8 @@ class BackendController extends Controller
         $rows_trashed        = $this->model->onlyTrashed()->get();
         $routeName           = $this->getTheNameFromClass();
         $moduleName          = $this->pluralModelName();
-        $pageDesc            = 'From Here You Can Control The ' . $this->pluralModelName();
         $singleModuleName    = $this->ModelName();
+        $pageDesc            = 'From Here You Can Control The ' . $moduleName;
         return view('back-end.' . $this->getTheNameFromClass() . '.index', compact(
             'rows',
             'rows_trashed', 
@@ -35,15 +35,17 @@ class BackendController extends Controller
             'singleModuleName',
         ));
     }
-
+    
     public function create()
     {
         $routeName           = $this->getTheNameFromClass();
         $moduleName          = $this->pluralModelName();
         $singleModuleName    = $this->ModelName();
+        $pageDesc            = 'From Here You Can Create a ' . $moduleName;
         return view('back-end.' . $this->getTheNameFromClass() . '.create', compact(
             'routeName',
             'moduleName',
+            'pageDesc',
             'singleModuleName',
 
         ));
@@ -51,15 +53,17 @@ class BackendController extends Controller
     
     public function edit($id)
     {
-        $row = $this->model->findOrfail($id);
+        $row                 = $this->model->findOrfail($id);
         $moduleName          = $this->pluralModelName();
+        $routeName           = $this->getTheNameFromClass();
+        $pageDesc            = 'From Here You Can Edit a ' . $moduleName;
         $singleModuleName    = $this->ModelName();
-        $routeName = $this->getTheNameFromClass();
         return view('back-end.' . $this->getTheNameFromClass() . '.edit', compact(
             'row',
-            'routeName',
             'moduleName',
             'singleModuleName',
+            'routeName',
+            'pageDesc',
         ));
     }
 

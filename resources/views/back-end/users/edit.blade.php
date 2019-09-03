@@ -7,8 +7,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title" style="color:#FFF">Edit User</h4>
-                    <p class="card-category">From Here You Can Edit a User</p>
+                    <h4 class="card-title" style="color:#FFF">Edit  User</h4>
+                    <p class="card-category">From Here You Can Edit a Users</p>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('back.users.update', ['id' => $row->id]) }}" method="POST">

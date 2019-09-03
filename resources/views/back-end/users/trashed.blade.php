@@ -43,12 +43,12 @@
                                 @foreach ($rows_trashed as $row)
                                     <tr>
                                         <td>{{ $row->id }}</td>
-                                        <td><a href="{{ route($routeName . '.show', ['id' => $row->id]) }}">{{ $row->name }}</a></td>
+                                        <td><a href="{{ route('back.' . $routeName . '.show', ['id' => $row->id]) }}">{{ $row->name }}</a></td>
                                         <td>{{ $row->email }}</td>
                                         <td>{{ $row->group }}</td>
                                         <td class="td-actions">
-                                            @include('back-end.shared.buttons.restore', ['url' => route('back.users.restore', $row)])
-                                            @include('back-end.shared.buttons.delete', ['url' => route('back.users.delete', $row)])
+                                            @include('back-end.shared.buttons.restore', ['url' => route('back.' . $routeName . '.restore', $row)])
+                                            @include('back-end.shared.buttons.delete', ['url' => route('back.' . $routeName . '.delete', $row)])
                                         </td>
                                     </tr>        
                                 @endforeach

@@ -13,7 +13,7 @@
                             <p class="card-category">Here is You Can Restore || Delete The Categories</p>
                         </div>
                         <div class="col-md-8 text-right">
-                            <a href="{{ route('back.'.$routeName . '.index') }}" class="btn btn-primary btn-round bg-white" style="color:blueviolet"><i style="margin-right:10px" class="fa fa-user"></i>  The Categories</a>
+                            <a href="{{ route('back.'.$routeName . '.index') }}" class="btn btn-primary btn-round bg-white" style="color:blueviolet"><i style="margin-right:5px" class="material-icons">bubble_chart</i>  The Categories</a>
                         </div>
                     </div>
                 </div>
@@ -43,8 +43,8 @@
                                     <td>{{ $row->title }}</td>
                                     <td><img src="{{ $row->iconPath() }}" alt="" width="100" height="100"></td>
                                     <td class="td-actions">
-                                        @include('back-end.shared.buttons.restore', ['url' => route('back.categories.restore', $row)])
-                                        @include('back-end.shared.buttons.delete', ['url' => route('back.categories.delete', $row)])
+                                        @include('back-end.shared.buttons.restore', ['url' => route('back.' . $routeName . '.restore', $row)])
+                                        @include('back-end.shared.buttons.delete', ['url' => route('back.' . $routeName . '.delete', $row)])
                                     </td>
                                 </tr>
                                 @endforeach

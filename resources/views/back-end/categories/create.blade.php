@@ -7,8 +7,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title" style="color:#FFF">Add Category</h4>
-                    <p class="card-category">From Here You Can Create a Category</p>
+                    <h4 class="card-title" style="color:#FFF">Add {{ $singleModuleName }}</h4>
+                    <p class="card-category">{{ $pageDesc }}</p>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('back.' .$routeName . '.store') }}" method="POST" enctype="multipart/form-data">
